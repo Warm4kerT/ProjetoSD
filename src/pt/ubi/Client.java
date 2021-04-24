@@ -49,7 +49,7 @@ public class Client{
                     "1-Listar\n" +
                     "2-Inserir\n" +
                     "3-Número de acessos\n" +
-                    "4-Procurar por nome" +
+                    "4-Procurar por nome\n" +
                     "5-Remover por nome");
 
             option = ler.umInt();
@@ -83,11 +83,25 @@ public class Client{
                 case 3:
                     System.out.println("Número de acessos");
                     System.out.println(serverObject.getCount());
+                    break;
 
                 case 4:
-                    System.out.println("Ainda não está implementado");
+                    System.out.println("Insira o nome do artigo a procurar");
+                    if(serverObject.ProcurarArtigo(ler.umaString())==0)
+                        System.out.println("Artigo não encontrado");
+                    else
+                        System.out.println("Artigo encontrado");
+                    break;
+
                 case 5:
-                    System.out.println("Ainda não implementado");
+                    System.out.println("Remover artigo");
+                    System.out.println("Insira o nome do artigo a remover");
+                    if(serverObject.removerArtigo(ler.umaString())==0)
+                        System.out.println("Artigo não encontrado");
+                    else
+                        System.out.println("Removido com sucesso");
+                    break;
+
 
                 case 0:
                     serverObject.escreverArtigos();

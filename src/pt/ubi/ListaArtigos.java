@@ -1,6 +1,7 @@
 package pt.ubi;
 
 import java.io.*;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class ListaArtigos {
@@ -33,6 +34,29 @@ public class ListaArtigos {
         }
 
         return 1;
+    }
+
+    public int ProcurarArtigo(String nome){
+        System.out.println("Entrei no artigo");
+        for (Artigos aux : listagem) {
+            if (aux.getNome().compareTo(nome) == 0) {
+                System.out.println(aux.toString());
+                return 1;
+            }
+        }
+
+        System.out.println("Artigo não encontrado");
+        return 0;
+    }
+
+    public int removerArtigo(String nome){
+        for (Artigos aux : listagem) {
+            if (aux.getNome().compareTo(nome) == 0) {
+                listagem.remove(aux);
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public ArrayList<Artigos> getLista(){

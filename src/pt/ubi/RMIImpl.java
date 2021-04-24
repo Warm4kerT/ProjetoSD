@@ -20,9 +20,9 @@ public class RMIImpl extends UnicastRemoteObject implements pt.ubi.RMIInterface,
         super();
         try {
             Naming.rebind(name, this);
-        }catch (MalformedURLException | RemoteException e) {
+        } catch (MalformedURLException | RemoteException e) {
             if (e instanceof RemoteException)
-                throw (RemoteException)e;
+                throw (RemoteException) e;
             else
                 throw new RemoteException(e.getMessage());
         }
@@ -35,7 +35,7 @@ public class RMIImpl extends UnicastRemoteObject implements pt.ubi.RMIInterface,
     }
 
     @Override
-    public int lerArtigos() throws RemoteException{
+    public int lerArtigos() throws RemoteException {
         count++;
         return listagem.lerArtigos();
     }
@@ -47,14 +47,26 @@ public class RMIImpl extends UnicastRemoteObject implements pt.ubi.RMIInterface,
     }
 
     @Override
-    public ArrayList<Artigos> getArtigos() throws RemoteException{
+    public ArrayList<Artigos> getArtigos() throws RemoteException {
         count++;
         return listagem.getLista();
     }
 
-    public int getCount() throws RemoteException{
+    public int getCount() throws RemoteException {
         count++;
         return count;
+    }
+
+    @Override
+    public int removerArtigo(String nome) throws RemoteException {
+        count++;
+        return listagem.removerArtigo(nome);
+    }
+
+    @Override
+    public int ProcurarArtigo(String nome) throws RemoteException {
+        count++;
+        return listagem.ProcurarArtigo(nome);
     }
 
     @Override
