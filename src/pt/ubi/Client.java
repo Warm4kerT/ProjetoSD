@@ -87,6 +87,7 @@ public class Client{
                 case 4:
                     System.out.println("Ainda não está implementado");
                 case 5:
+                    System.out.println("Ainda não implementado");
 
                 case 0:
                     serverObject.escreverArtigos();
