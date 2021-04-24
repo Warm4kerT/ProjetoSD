@@ -52,6 +52,11 @@ public class RMIImpl extends UnicastRemoteObject implements pt.ubi.RMIInterface,
         return listagem.getLista();
     }
 
+    public int getCount() throws RemoteException{
+        count++;
+        return count;
+    }
+
     @Override
     public int addArtigo(Artigos art) throws RemoteException{
         count++;

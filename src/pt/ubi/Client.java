@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pt.ubi;
 
 import java.net.MalformedURLException;
@@ -52,7 +47,10 @@ public class Client{
         while(option != 0){
             System.out.println("------Menu------\n" +
                     "1-Listar\n" +
-                    "2-Inserir\n");
+                    "2-Inserir\n" +
+                    "3-Número de acessos\n" +
+                    "4-Procurar por nome" +
+                    "5-Remover por nome");
 
             option = ler.umInt();
 
@@ -81,6 +79,14 @@ public class Client{
                     System.out.println("Registado");
 
                     break;
+
+                case 3:
+                    System.out.println("Número de acessos");
+                    System.out.println(serverObject.getCount());
+
+                case 4:
+                    System.out.println("Ainda não está implementado");
+                case 5:
 
                 case 0:
                     serverObject.escreverArtigos();

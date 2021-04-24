@@ -17,6 +17,8 @@ public interface RMIInterface extends java.rmi.Remote{
 
     public int lerArtigos() throws java.rmi.RemoteException;
 
+    public int getCount() throws java.rmi.RemoteException;
+
     public int escreverArtigos() throws java.rmi.RemoteException;
 
     public ArrayList<Artigos> getArtigos() throws java.rmi.RemoteException;
