@@ -37,11 +37,55 @@ public class Client{
             //invoke method on server object
             Date d = myServerObject.getDate();
             System.out.println("Date on server is " + d);
+            menu(myServerObject);
         }catch(MalformedURLException | NotBoundException | RemoteException e) {
             System.out.println("Exception occured: " + e);
             System.exit(0);
         }
         
         System.out.println("RMI connection successful");
+    }
+
+    public static void menu(RMIInterface serverObject) throws RemoteException{
+        int option = 20;
+
+        while(option != 0){
+            System.out.println("------Menu------\n" +
+                    "1-Listar\n" +
+                    "2-Inserir\n");
+
+            option = ler.umInt();
+
+            switch (option){
+                case 1:
+                    for(Artigos aux: serverObject.getArtigos()){
+                        System.out.println(aux);
+                    }
+                break;
+
+                case 2:
+                    System.out.println("Name: ");
+                    String name = ler.umaString();
+                    System.out.println("Categoria: ");
+                    String Categoria = ler.umaString();
+                    System.out.println("Marca: ");
+                    String Marca = ler.umaString();
+                    System.out.println("Desporto: ");
+                    String Desporto = ler.umaString();
+                    System.out.println("Preço: ");
+                    float preco = ler.umFloat();
+                    System.out.println("Stock: ");
+                    int stock = ler.umInt();
+                    Artigos aux = new Artigos(name,Categoria,Desporto,Marca,preco,stock);
+                    serverObject.addArtigo(aux);
+                    System.out.println("Registado");
+
+                    break;
+
+                case 0:
+                    serverObject.escreverArtigos();
+                    break;
+            }
+        }
     }
 }

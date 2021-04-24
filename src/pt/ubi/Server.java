@@ -16,13 +16,6 @@ public Server() {
             java.rmi.registry.LocateRegistry.createRegistry(1099);
             System.out.println("RMI registry ready.");
 
-            //Fornecedor f = new FornecedorImpl("Fornecedor");
-            System.out.println("cheguei aqui 1");
-            //Vendedor v = new VendedorImpl("Vendedor");
-            System.out.println("------------");
-            //Negociar n = new NegociarImpl(f);
-            //Naming.rebind("negociar", n);
-            System.out.println("Servidor esta okay");
         } catch (Exception e) {
             System.out.println("Trouble: " + e);
         }
