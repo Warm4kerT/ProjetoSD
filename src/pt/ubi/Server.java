@@ -9,6 +9,8 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Server{
+    public ListaArtigos listagem = new ListaArtigos();
+
 public Server() {
 
         System.setSecurityManager(new SecurityManager());
@@ -20,8 +22,11 @@ public Server() {
             System.out.println("Trouble: " + e);
         }
 
+        listagem.lerArtigos();
+
     try {
-        FornecedorImplements forImplements = new FornecedorImplements("Fornecedor");
+        FornecedorImplements forImplements = new FornecedorImplements("Fornecedor",listagem);
+        VendedorImplements venImplements = new VendedorImplements("Vendedor",listagem);
         System.out.println("Servidor está OK");
     }
     catch (Exception e) {

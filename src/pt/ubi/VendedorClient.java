@@ -6,8 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public class FornecedorClient {
-
+public class VendedorClient {
     public static void main(String[] argv) {
         String serverName = "";
         System.setSecurityManager(new SecurityManager());
@@ -28,8 +27,8 @@ public class FornecedorClient {
 
         try {
             //bind server object to object in client
-            FornecedorInterface myServerObject =
-                    (FornecedorInterface) Naming.lookup("//"+serverName+"/Fornecedor");
+            VendedorInterface myServerObject =
+                    (VendedorInterface) Naming.lookup("//"+serverName+"/Vendedor");
             //invoke method on server object
             Date d = myServerObject.getDate();
             System.out.println("Date on server is " + d);
@@ -42,7 +41,7 @@ public class FornecedorClient {
         System.out.println("RMI connection successful");
     }
 
-    public static void menu(FornecedorInterface serverObject) throws RemoteException{
+    public static void menu(VendedorInterface serverObject) throws RemoteException{
         int option = 20;
 
         while(option != 0){
@@ -111,4 +110,3 @@ public class FornecedorClient {
         }
     }
 }
-

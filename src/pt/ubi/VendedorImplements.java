@@ -7,14 +7,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class FornecedorImplements extends UnicastRemoteObject implements pt.ubi.FornecedorInterface, Serializable {
+public class VendedorImplements extends UnicastRemoteObject implements pt.ubi.VendedorInterface, Serializable {
 
     public int count = 0;
     public ListaArtigos listagem = new ListaArtigos();
 
-    public FornecedorImplements(String name, ListaArtigos list) throws RemoteException {
+    public VendedorImplements(String name, ListaArtigos list) throws RemoteException {
         super();
         this.listagem = list;
+
         try {
             Naming.rebind(name, this);
         } catch (MalformedURLException | RemoteException e) {
@@ -30,12 +31,6 @@ public class FornecedorImplements extends UnicastRemoteObject implements pt.ubi.
     public java.util.Date getDate() {
         System.out.println(" Método remoto -- RMIImpl.getDate()");
         return new java.util.Date();
-    }
-
-    @Override
-    public int lerArtigos() throws RemoteException {
-        count++;
-        return listagem.lerArtigos();
     }
 
     @Override

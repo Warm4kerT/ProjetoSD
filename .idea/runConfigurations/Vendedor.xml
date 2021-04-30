@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Cliente" type="Application" factoryName="Application">
+  <configuration default="false" name="Vendedor" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_111" />
-    <option name="MAIN_CLASS_NAME" value="pt.ubi.Client" />
+    <option name="MAIN_CLASS_NAME" value="pt.ubi.VendedorClient" />
     <module name="ProjectoSD" />
     <option name="VM_PARAMETERS" value="-Djava.security.policy=permissions.policy" />
     <method v="2">
