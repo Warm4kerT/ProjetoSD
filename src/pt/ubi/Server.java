@@ -21,7 +21,7 @@ public Server() {
         }
 
     try {
-        RMIImpl implementaInterface = new RMIImpl("RMIImpl");
+        FornecedorImplements forImplements = new FornecedorImplements("Fornecedor");
         System.out.println("Servidor está OK");
     }
     catch (Exception e) {

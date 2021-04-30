@@ -1,12 +1,13 @@
 package pt.ubi;
 
 import java.net.MalformedURLException;
-import java.rmi.*;
-import java.rmi.registry.*;
-import java.rmi.server.*;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.Date;
 
-public class Client{
+public class FornecedorClient {
+
     public static void main(String[] argv) {
         String serverName = "";
         System.setSecurityManager(new SecurityManager());
@@ -19,29 +20,28 @@ public class Client{
         }else {
             serverName = argv[0];
         }
-        
+
         if (serverName.equals( "") ) {
             System.out.println("usage: java RMIClient < host running RMI server>");
             System.exit(0);
         }
-        
+
         try {
-        //bind server object to object in client
-            RMIInterface myServerObject =
-            (RMIInterface) Naming.lookup("//"+serverName+"/RMIImpl");
+            //bind server object to object in client
+            FornecedorInterface myServerObject =
+                    (FornecedorInterface) Naming.lookup("//"+serverName+"/Fornecedor");
             //invoke method on server object
             Date d = myServerObject.getDate();
             System.out.println("Date on server is " + d);
-            menu(myServerObject);
         }catch(MalformedURLException | NotBoundException | RemoteException e) {
             System.out.println("Exception occured: " + e);
             System.exit(0);
         }
-        
+
         System.out.println("RMI connection successful");
     }
 
-    public static void menu(RMIInterface serverObject) throws RemoteException{
+    public static void menu(FornecedorInterface serverObject) throws RemoteException{
         int option = 20;
 
         while(option != 0){
@@ -59,7 +59,7 @@ public class Client{
                     for(Artigos aux: serverObject.getArtigos()){
                         System.out.println(aux);
                     }
-                break;
+                    break;
 
                 case 2:
                     System.out.println("Name: ");
@@ -110,3 +110,4 @@ public class Client{
         }
     }
 }
+
