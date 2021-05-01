@@ -30,10 +30,12 @@ public class FornecedorClient {
             //bind server object to object in client
             FornecedorInterface myServerObject =
                     (FornecedorInterface) Naming.lookup("//"+serverName+"/Fornecedor");
+
+            ServerInterface server = (ServerInterface) Naming.lookup("Server");
             //invoke method on server object
             Date d = myServerObject.getDate();
             System.out.println("Date on server is " + d);
-            menu(myServerObject);
+            menu(myServerObject,server);
         }catch(MalformedURLException | NotBoundException | RemoteException e) {
             System.out.println("Exception occured: " + e);
             System.exit(0);
@@ -42,27 +44,30 @@ public class FornecedorClient {
         System.out.println("RMI connection successful");
     }
 
-    public static void registar(){
-
-    }
-
-    public static void menu(FornecedorInterface serverObject) throws RemoteException{
+    public static void menu(FornecedorInterface serverObject, ServerInterface server) throws RemoteException{
         int option = 20;
         int option2 = 20;
 
         while(option != 0){
+
+            if(server.getMessage()!=null){
+                System.out.println("Falta stock de: " + server.getMessage());
+                server.resetMessage();
+            }
+
             System.out.println("------Menu------\n" +
                     "1-Listar artigos\n"+
                     "2-Registo de artigo\n" +
                     "3-Entrada de artigos\n" +
                     "4-Eliminar artigo\n" +
-                    "5-Consultar Compras\n");
+                    "5-Consultar Compras\n\n");
 
             option = ler.umInt();
             Artigos search  = new Artigos();
             Artigos add;
             int size;
             int addstock;
+
             switch (option){
                 case 1:
                     for(Artigos aux: serverObject.getArtigos()){
@@ -132,7 +137,7 @@ public class FornecedorClient {
                 case 0:
                     break;
             }
-        }
+       }
     }
 }
 

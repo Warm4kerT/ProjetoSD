@@ -29,10 +29,11 @@ public class VendedorClient {
             //bind server object to object in client
             VendedorInterface myServerObject =
                     (VendedorInterface) Naming.lookup("//"+serverName+"/Vendedor");
+            ServerInterface server = (ServerInterface) Naming.lookup("Server");
             //invoke method on server object
             Date d = myServerObject.getDate();
             System.out.println("Date on server is " + d);
-            menu(myServerObject);
+            menu(myServerObject,server);
         }catch(MalformedURLException | NotBoundException | RemoteException e) {
             System.out.println("Exception occured: " + e);
             System.exit(0);
@@ -41,7 +42,7 @@ public class VendedorClient {
         System.out.println("RMI connection successful");
     }
 
-    public static void menu(VendedorInterface serverObject) throws RemoteException{
+    public static void menu(VendedorInterface serverObject, ServerInterface server) throws RemoteException{
         int option = 20;
         int option2 = 20;
 
@@ -73,8 +74,9 @@ public class VendedorClient {
                     if(!search.equals(new Artigos())){
                         System.out.println("Insira a quantidade de venda:");
                         quantidade = ler.umInt();
-                        if(quantidade> search.getStock()){
+                        if(quantidade > search.getStock()){
                             System.out.println("Nao tem stock suficiente!!");
+                            server.reciveMessage(search.getNome());
                             break;
                         }else{
                             if(serverObject.addVenda(search,quantidade) == size){
@@ -109,7 +111,11 @@ public class VendedorClient {
                     System.out.println("1- Por Nome\n2- Por Data\n3- Por Quantidade\n");
                     option2 = ler.umInt();
                     System.out.println(serverObject.getVendas(option2));
+                    break;
 
+                case 6:
+                    System.out.println("Send message: ");
+                    server.reciveMessage(ler.umaString());
                 case 0:
                     serverObject.escreverArtigos();
                     break;
