@@ -3,6 +3,7 @@ package pt.ubi;
 import java.io.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ListaArtigos {
     public ArrayList<Artigos> listagem = new ArrayList<>();
@@ -117,9 +118,37 @@ public class ListaArtigos {
 
     public ArrayList<Artigos> getLista(){ return listagem;}
 
-    public ArrayList<Trans> getCompras(){ return compras;}
+    public ArrayList<Trans> getCompras(int flag){
+        switch(flag){
+            case 1:
+                Collections.sort(compras);
+                break;
+            case 2:
+                Collections.sort(compras, Trans::compareToData);
+            break;
+            case 3:
+                Collections.sort(compras, Trans::compareToQuant);
+                break;
+        }
 
-    public ArrayList<Trans> getVendas(){ return vendas;}
+        return compras;
+    }
+
+    public ArrayList<Trans> getVendas(int flag){
+        switch(flag){
+        case 1:
+            Collections.sort(vendas);
+            break;
+        case 2:
+            Collections.sort(vendas, Trans::compareToData);
+            break;
+        case 3:
+            Collections.sort(vendas, Trans::compareToQuant);
+            break;
+    }
+
+        return vendas;
+    }
 
     public int addArtigo(Artigos art){ // Adicionar Artigo
 

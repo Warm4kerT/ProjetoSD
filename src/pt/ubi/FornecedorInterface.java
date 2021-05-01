@@ -27,6 +27,6 @@ public interface FornecedorInterface extends java.rmi.Remote {
 
     public ArrayList<Artigos> getArtigos() throws java.rmi.RemoteException;
 
-    public ArrayList<Trans> getCompras() throws java.rmi.RemoteException;
+    public ArrayList<Trans> getCompras(int flag) throws java.rmi.RemoteException;
 
 }

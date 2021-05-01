@@ -86,9 +86,9 @@ public class FornecedorImplements extends UnicastRemoteObject implements pt.ubi.
     }
 
     @Override
-    public ArrayList<Trans> getCompras() throws java.rmi.RemoteException{
+    public ArrayList<Trans> getCompras(int flag) throws java.rmi.RemoteException{
         count++;
-        return listagem.getCompras();
+        return listagem.getCompras(flag);
     }
 
 }

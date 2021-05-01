@@ -48,6 +48,7 @@ public class FornecedorClient {
 
     public static void menu(FornecedorInterface serverObject) throws RemoteException{
         int option = 20;
+        int option2 = 20;
 
         while(option != 0){
             System.out.println("------Menu------\n" +
@@ -92,7 +93,7 @@ public class FornecedorClient {
                 case 3:
                     System.out.println("Insira o nome do artigo ao qual deseja adicionar stock");
                     search = serverObject.ProcurarArtigo(ler.umaString());
-                    size = serverObject.getCompras().size();
+                    size = serverObject.getCompras(1).size();
                     if(!search.equals(new Artigos())) {
                         System.out.println("Indique a quantidade a adicionar");
                         addstock = ler.umInt();
@@ -122,7 +123,9 @@ public class FornecedorClient {
 
                 case 5:
                     System.out.println("Compras:\n");
-                    System.out.println(serverObject.getCompras());
+                    System.out.println("1- Por Nome\n2- Por Data\n3- Por Quantidade\n");
+                    option2 = ler.umInt();
+                    System.out.println(serverObject.getCompras(option2));
                     break;
 
                 case 0:

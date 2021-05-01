@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Trans implements Serializable {
+public class Trans implements Serializable, Comparable<Trans>{
     public Artigos art;
     public Date data;
     public int quantidade;
@@ -61,4 +61,23 @@ public class Trans implements Serializable {
                 ", quantidade=" + quantidade +
                 '}';
     }
+
+    @Override
+    public int compareTo(Trans o) {
+        return this.getArt().getNome().compareTo(o.getArt().getNome());
+    }
+    
+     public int compareToData(Trans o) {
+        return this.getData().compareTo(o.getData());
+     }
+     public int compareToQuant(Trans o) {
+         if (o.getQuantidade() > this.getQuantidade()) {
+             return 1;
+         } else if (o.getQuantidade() < this.getQuantidade()) {
+             return -1;
+         }
+
+         return 0;
+     }
+    
 }

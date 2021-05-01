@@ -43,6 +43,7 @@ public class VendedorClient {
 
     public static void menu(VendedorInterface serverObject) throws RemoteException{
         int option = 20;
+        int option2 = 20;
 
         while(option != 0){
             System.out.println("------Menu------\n" +
@@ -68,7 +69,7 @@ public class VendedorClient {
                 case 2:
                     System.out.println("Insira o nome do artigo a Vender:");
                     search = serverObject.ProcurarArtigo(ler.umaString());
-                    size = serverObject.getVendas().size();
+                    size = serverObject.getVendas(1).size();
                     if(!search.equals(new Artigos())){
                         System.out.println("Insira a quantidade de venda:");
                         quantidade = ler.umInt();
@@ -105,7 +106,9 @@ public class VendedorClient {
 
                 case 5:
                     System.out.println("Vendas:");
-                    System.out.println(serverObject.getVendas());
+                    System.out.println("1- Por Nome\n2- Por Data\n3- Por Quantidade\n");
+                    option2 = ler.umInt();
+                    System.out.println(serverObject.getVendas(option2));
 
                 case 0:
                     serverObject.escreverArtigos();

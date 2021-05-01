@@ -69,9 +69,9 @@ public class VendedorImplements extends UnicastRemoteObject implements pt.ubi.Ve
     }
 
     @Override
-    public ArrayList<Trans> getVendas() throws  java.rmi.RemoteException{
+    public ArrayList<Trans> getVendas(int flag) throws  java.rmi.RemoteException{
         count++;
-        return listagem.getVendas();
+        return listagem.getVendas(flag);
     }
 
     @Override

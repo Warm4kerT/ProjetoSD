@@ -23,5 +23,5 @@ public interface VendedorInterface extends java.rmi.Remote{
 
     public ArrayList<Artigos> getArtigos() throws java.rmi.RemoteException;
 
-    public ArrayList<Trans> getVendas() throws  java.rmi.RemoteException;
+    public ArrayList<Trans> getVendas(int flag) throws  java.rmi.RemoteException;
 }
