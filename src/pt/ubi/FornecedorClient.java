@@ -42,19 +42,23 @@ public class FornecedorClient {
         System.out.println("RMI connection successful");
     }
 
+    public static void registar(){
+
+    }
+
     public static void menu(FornecedorInterface serverObject) throws RemoteException{
         int option = 20;
 
         while(option != 0){
             System.out.println("------Menu------\n" +
-                    "1-Listar\n" +
-                    "2-Inserir\n" +
-                    "3-Número de acessos\n" +
-                    "4-Procurar por nome\n" +
-                    "5-Remover por nome");
+                    "1-Listar artigos\n"+
+                    "2-Registo de artigo\n" +
+                    "3-Entrada de artigos\n" +
+                    "4-Eliminar artigo\n" +
+                    "5-Consultar vendas\n");
 
             option = ler.umInt();
-
+           // Artigos aux = new Artigos(name,Categoria,Desporto,Marca,preco,stock);
             switch (option){
                 case 1:
                     for(Artigos aux: serverObject.getArtigos()){
@@ -63,44 +67,49 @@ public class FornecedorClient {
                     break;
 
                 case 2:
-                    System.out.println("Name: ");
-                    String name = ler.umaString();
+                    System.out.println("Nome: ");
+                    String nome = ler.umaString();
                     System.out.println("Categoria: ");
-                    String Categoria = ler.umaString();
+                    String categoria = ler.umaString();
                     System.out.println("Marca: ");
-                    String Marca = ler.umaString();
+                    String marca = ler.umaString();
                     System.out.println("Desporto: ");
-                    String Desporto = ler.umaString();
+                    String desporto = ler.umaString();
                     System.out.println("Preço: ");
                     float preco = ler.umFloat();
                     System.out.println("Stock: ");
                     int stock = ler.umInt();
-                    Artigos aux = new Artigos(name,Categoria,Desporto,Marca,preco,stock);
+                    Artigos aux = new Artigos(nome, categoria, desporto, marca, preco, stock);
                     serverObject.addArtigo(aux);
                     System.out.println("Registado");
 
                     break;
 
                 case 3:
-                    System.out.println("Número de acessos");
-                    System.out.println(serverObject.getCount());
+                    int addstock = ler.umInt();
+                    System.out.println("Insira o nome do artigo ao qual deseja adicionar stock");
+                    if(serverObject.ProcurarArtigo(ler.umaString())==0) {
+                        System.out.println("Indique a quantidade a adicionar");
+                        aux.setStock(aux.getStock() + addstock);
+                        System.out.println("Stock adicionado");
+                    }
+                    else
+                        System.out.println("Artigo não encontrado");
                     break;
 
                 case 4:
-                    System.out.println("Insira o nome do artigo a procurar");
-                    if(serverObject.ProcurarArtigo(ler.umaString())==0)
-                        System.out.println("Artigo não encontrado");
+                    System.out.println("Insira o nome do artigo que deseja eliminar");
+                    if(serverObject.ProcurarArtigo(ler.umaString())==0) {
+                        serverObject.removerArtigo(aux);
+                        System.out.println("Artigo eliminado");
+                    }
                     else
-                        System.out.println("Artigo encontrado");
+                        System.out.println("Artigo não encontrado");
                     break;
 
                 case 5:
-                    System.out.println("Remover artigo");
-                    System.out.println("Insira o nome do artigo a remover");
-                    if(serverObject.removerArtigo(ler.umaString())==0)
-                        System.out.println("Artigo não encontrado");
-                    else
-                        System.out.println("Removido com sucesso");
+                    System.out.println("Vendas:\n");
+
                     break;
 
 
