@@ -51,7 +51,7 @@ public class FornecedorClient {
         while(option != 0){
 
             if(server.getMessage()!=null){
-                System.out.println("Falta stock de: " + server.getMessage());
+                System.out.println("\n\nFalta stock de: " + server.getMessage());
                 server.resetMessage();
             }
 
