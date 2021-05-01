@@ -124,7 +124,7 @@ public class ListaArtigos {
                 Collections.sort(compras);
                 break;
             case 2:
-                Collections.sort(compras, Trans::compareToData);
+                Collections.sort(compras, Collections.reverseOrder(Trans::compareToData));
             break;
             case 3:
                 Collections.sort(compras, Trans::compareToQuant);

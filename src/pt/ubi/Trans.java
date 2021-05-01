@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Trans implements Serializable, Comparable<Trans>{
+public class Trans implements Serializable, Comparable<Trans>{ //Classe de transações, inclui os metodos standard(setters, getters...) e ainda mais os métodos de sort(nome, data, quantidade)
     public Artigos art;
     public Date data;
     public int quantidade;
@@ -59,15 +59,16 @@ public class Trans implements Serializable, Comparable<Trans>{
                 "Artigo=" + art.getNome() +
                 ", data=" + data +
                 ", quantidade=" + quantidade +
-                '}';
+                "}\n";
     }
 
+    //Estes métodos permitem reorganizar o objeto consoante a preferencia do utilizador
     @Override
-    public int compareTo(Trans o) {
+    public int compareTo(Trans o) {   //por ordem alfabética
         return this.getArt().getNome().compareTo(o.getArt().getNome());
     }
-    
-     public int compareToData(Trans o) {
+
+     public int compareToData(Trans o) {//por ordem da data, do mais
         return this.getData().compareTo(o.getData());
      }
      public int compareToQuant(Trans o) {
@@ -79,5 +80,5 @@ public class Trans implements Serializable, Comparable<Trans>{
 
          return 0;
      }
-    
+
 }

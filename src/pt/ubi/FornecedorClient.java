@@ -88,6 +88,7 @@ public class FornecedorClient {
                     serverObject.addCompra(add, stock);
                     System.out.println("Registado");
                     serverObject.escreverArtigos();
+                    serverObject.escreverCompras();
                     break;
 
                 case 3:
