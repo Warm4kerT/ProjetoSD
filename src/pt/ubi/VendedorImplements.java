@@ -40,6 +40,12 @@ public class VendedorImplements extends UnicastRemoteObject implements pt.ubi.Ve
     }
 
     @Override
+    public int escreverVendas() throws RemoteException {
+        count++;
+        return listagem.escreverVendas();
+    }
+
+    @Override
     public ArrayList<Artigos> getArtigos() throws RemoteException {
         count++;
         return listagem.getLista();
@@ -51,21 +57,26 @@ public class VendedorImplements extends UnicastRemoteObject implements pt.ubi.Ve
     }
 
     @Override
-    public int removerArtigo(String nome) throws RemoteException {
-        count++;
-        return listagem.removerArtigo(nome);
-    }
-
-    @Override
-    public int ProcurarArtigo(String nome) throws RemoteException {
+    public Artigos ProcurarArtigo(String nome) throws RemoteException {
         count++;
         return listagem.ProcurarArtigo(nome);
     }
 
     @Override
-    public int addArtigo(Artigos art) throws RemoteException{
+    public Trans ProcurarVendas(String nome) throws RemoteException {
         count++;
-        return listagem.addArtigo(art);
+        return listagem.ProcurarVendas(nome);
     }
 
+    @Override
+    public ArrayList<Trans> getVendas() throws  java.rmi.RemoteException{
+        count++;
+        return listagem.getVendas();
+    }
+
+    @Override
+    public int addVenda(Artigos art, int quantidade) throws java.rmi.RemoteException{
+        count++;
+        return listagem.addVenda(art,quantidade);
+    }
 }

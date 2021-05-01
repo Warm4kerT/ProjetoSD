@@ -8,6 +8,15 @@ public class Artigos implements Serializable{
     private float preço;
     private int stock;
 
+    public Artigos() {
+        this.nome = null;
+        this.categoria = null;
+        this.desporto = null;
+        this.marca = null;
+        this.preço = 0;
+        this.stock = 0;
+    }
+
     public Artigos(String nome, String categoria, String desporto, String marca, float preço, int stock) {
         this.nome = nome;
         this.categoria = categoria;

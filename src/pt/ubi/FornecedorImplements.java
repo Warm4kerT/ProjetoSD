@@ -62,7 +62,7 @@ public class FornecedorImplements extends UnicastRemoteObject implements pt.ubi.
     }
 
     @Override
-    public int ProcurarArtigo(String nome) throws RemoteException {
+    public Artigos ProcurarArtigo(String nome) throws RemoteException {
         count++;
         return listagem.ProcurarArtigo(nome);
     }
@@ -71,6 +71,24 @@ public class FornecedorImplements extends UnicastRemoteObject implements pt.ubi.
     public int addArtigo(Artigos art) throws RemoteException{
         count++;
         return listagem.addArtigo(art);
+    }
+
+    @Override
+    public int escreverCompras() throws RemoteException{
+        count++;
+        return listagem.escreverCompras();
+    }
+
+    @Override
+    public int addCompra(Artigos art, int quantidade) throws RemoteException{
+        count++;
+        return listagem.addCompra(art,quantidade);
+    }
+
+    @Override
+    public ArrayList<Trans> getCompras() throws java.rmi.RemoteException{
+        count++;
+        return listagem.getCompras();
     }
 
 }

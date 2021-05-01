@@ -55,10 +55,13 @@ public class FornecedorClient {
                     "2-Registo de artigo\n" +
                     "3-Entrada de artigos\n" +
                     "4-Eliminar artigo\n" +
-                    "5-Consultar vendas\n");
+                    "5-Consultar Compras\n");
 
             option = ler.umInt();
-           // Artigos aux = new Artigos(name,Categoria,Desporto,Marca,preco,stock);
+            Artigos search  = new Artigos();
+            Artigos add;
+            int size;
+            int addstock;
             switch (option){
                 case 1:
                     for(Artigos aux: serverObject.getArtigos()){
@@ -79,19 +82,27 @@ public class FornecedorClient {
                     float preco = ler.umFloat();
                     System.out.println("Stock: ");
                     int stock = ler.umInt();
-                    Artigos aux = new Artigos(nome, categoria, desporto, marca, preco, stock);
-                    serverObject.addArtigo(aux);
+                    add = new Artigos(nome, categoria, desporto, marca, preco, 0);
+                    serverObject.addArtigo(add);
+                    serverObject.addCompra(add, stock);
                     System.out.println("Registado");
-
+                    serverObject.escreverArtigos();
                     break;
 
                 case 3:
-                    int addstock = ler.umInt();
                     System.out.println("Insira o nome do artigo ao qual deseja adicionar stock");
-                    if(serverObject.ProcurarArtigo(ler.umaString())==0) {
+                    search = serverObject.ProcurarArtigo(ler.umaString());
+                    size = serverObject.getCompras().size();
+                    if(!search.equals(new Artigos())) {
                         System.out.println("Indique a quantidade a adicionar");
-                        aux.setStock(aux.getStock() + addstock);
-                        System.out.println("Stock adicionado");
+                        addstock = ler.umInt();
+                        if(size == serverObject.addCompra(search,addstock)){
+                            System.out.println("Não Adicionado");
+                        }else{
+                            System.out.println("Stock Adicionado");
+                        }
+                        serverObject.escreverArtigos();
+                        serverObject.escreverCompras();
                     }
                     else
                         System.out.println("Artigo não encontrado");
@@ -99,22 +110,22 @@ public class FornecedorClient {
 
                 case 4:
                     System.out.println("Insira o nome do artigo que deseja eliminar");
-                    if(serverObject.ProcurarArtigo(ler.umaString())==0) {
-                        serverObject.removerArtigo(aux);
+                    search = serverObject.ProcurarArtigo(ler.umaString());
+                    if(!search.equals(new Artigos())) {
+                        serverObject.removerArtigo(search.getNome());
                         System.out.println("Artigo eliminado");
+                        serverObject.escreverArtigos();
                     }
                     else
                         System.out.println("Artigo não encontrado");
                     break;
 
                 case 5:
-                    System.out.println("Vendas:\n");
-
+                    System.out.println("Compras:\n");
+                    System.out.println(serverObject.getCompras());
                     break;
 
-
                 case 0:
-                    serverObject.escreverArtigos();
                     break;
             }
         }
