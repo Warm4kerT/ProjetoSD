@@ -3,7 +3,7 @@ package pt.ubi;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Artigos implements Serializable{ //Classe Artigos com metodos basicos para trabalhar com os objetos
+public class Artigos implements Serializable{ //Classe Artigos com metodos basicos para trabalhar com o objeto
     private String nome, categoria, desporto, marca;
     private float preço;
     private int stock;

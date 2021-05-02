@@ -65,13 +65,13 @@ public class Trans implements Serializable, Comparable<Trans>{ //Classe de trans
     //Estes métodos permitem reorganizar o objeto consoante a preferencia do utilizador
     @Override
     public int compareTo(Trans o) {   //por ordem alfabética
-        return this.getArt().getNome().compareTo(o.getArt().getNome());
-    }
+        return this.getArt().getNome().compareTo(o.getArt().getNome()); } //Comparar por nome
 
      public int compareToData(Trans o) {//por ordem da data, do mais
         return this.getData().compareTo(o.getData());
-     }
-     public int compareToQuant(Trans o) {
+     }//Comparar por data
+
+     public int compareToQuant(Trans o) { //comparar por quantidade, de maior para menor
          if (o.getQuantidade() > this.getQuantidade()) {
              return 1;
          } else if (o.getQuantidade() < this.getQuantidade()) {

@@ -9,6 +9,8 @@ import java.util.Date;
 public class FornecedorClient {
 
     public static void main(String[] argv) {
+
+        //Ligação ao servidor
         String serverName = "";
         System.setSecurityManager(new SecurityManager());
         if (argv.length != 1) {
@@ -44,6 +46,7 @@ public class FornecedorClient {
         System.out.println("RMI connection successful");
     }
 
+    //menus do cliente do fornecedor
     public static void menu(FornecedorInterface serverObject, ServerInterface server) throws RemoteException{
         int option = 20;
         int option2 = 20;
@@ -69,13 +72,13 @@ public class FornecedorClient {
             int addstock;
 
             switch (option){
-                case 1:
+                case 1:   //Listar artigos
                     for(Artigos aux: serverObject.getArtigos()){
                         System.out.println(aux);
                     }
                     break;
 
-                case 2:
+                case 2:   //Registo de artigo
                     System.out.println("Nome: ");
                     String nome = ler.umaString();
                     System.out.println("Categoria: ");
@@ -96,7 +99,7 @@ public class FornecedorClient {
                     serverObject.escreverCompras();
                     break;
 
-                case 3:
+                case 3:   //Entrada de artigos
                     System.out.println("Insira o nome do artigo ao qual deseja adicionar stock");
                     search = serverObject.ProcurarArtigo(ler.umaString());
                     size = serverObject.getCompras(1).size();
@@ -115,7 +118,7 @@ public class FornecedorClient {
                         System.out.println("Artigo não encontrado");
                     break;
 
-                case 4:
+                case 4:   //Eliminar artigo
                     System.out.println("Insira o nome do artigo que deseja eliminar");
                     search = serverObject.ProcurarArtigo(ler.umaString());
                     if(!search.equals(new Artigos())) {
@@ -127,7 +130,7 @@ public class FornecedorClient {
                         System.out.println("Artigo não encontrado");
                     break;
 
-                case 5:
+                case 5:   //Consultar Compras
                     System.out.println("Compras:\n");
                     System.out.println("1- Por Nome\n2- Por Data\n3- Por Quantidade\n");
                     option2 = ler.umInt();

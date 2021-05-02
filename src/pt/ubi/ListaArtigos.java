@@ -28,7 +28,7 @@ public class ListaArtigos {
     }
 
 
-    public int escreverArtigos(){ //Escrever os artigos no ficherio
+    public int escreverArtigos(){ //Escrever os artigos no ficheiro
         try{
             ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream("./Artigos.dat"));
             os.writeObject(listagem);
@@ -41,7 +41,7 @@ public class ListaArtigos {
         return 1;
     }
 
-    public int escreverVendas(){ //Escrever as Vendas no ficherio
+    public int escreverVendas(){ //Escrever as Vendas no ficheiro
         try{
             ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream("./Vendidos.dat"));
             os.writeObject(vendas);
@@ -54,7 +54,7 @@ public class ListaArtigos {
         return 1;
     }
 
-    public int escreverCompras(){ //Escrever as Compras no ficherio
+    public int escreverCompras(){ //Escrever as Compras no ficheiro
         try{
             ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream("./Compras.dat"));
             os.writeObject(compras);
@@ -150,7 +150,7 @@ public class ListaArtigos {
         return vendas;
     }
 
-    public int addArtigo(Artigos art){ // Adicionar Artigo
+    public int addArtigo(Artigos art){ // Adicionar Artigo à lista
 
         for(Artigos aux:listagem){
             if (aux.equals(art)){
@@ -162,7 +162,7 @@ public class ListaArtigos {
         return listagem.size();
     }
 
-    public int addVenda(Artigos art, int quantidade){ //Adicionar vendas
+    public int addVenda(Artigos art, int quantidade){ //Adicionar vendas à lista
         Trans nova;
         for (Artigos aux : listagem) {
             if (aux.equals(art)) {
@@ -176,7 +176,7 @@ public class ListaArtigos {
         return vendas.size();
     }
 
-    public int addCompra(Artigos art, int quantidade){ //Adicionar compras
+    public int addCompra(Artigos art, int quantidade){ //Adicionar compras à lista
 
         Trans nova;
         for (Artigos aux : listagem) {

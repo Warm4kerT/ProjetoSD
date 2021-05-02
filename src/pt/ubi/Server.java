@@ -44,7 +44,7 @@ public class Server extends UnicastRemoteObject implements pt.ubi.ServerInterfac
         }
 
 }
-
+       
     public static void main(String args[]) throws RemoteException {
 
         System.setSecurityManager(new SecurityManager());

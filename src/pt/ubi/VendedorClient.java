@@ -61,13 +61,13 @@ public class VendedorClient {
             int size;
 
             switch (option){
-                case 1:
+                case 1:   //Listar Artigos
                     for(Artigos aux: serverObject.getArtigos()){
                         System.out.println(aux);
                     }
                     break;
 
-                case 2:
+                case 2:   //Vender
                     System.out.println("Insira o nome do artigo a Vender:");
                     search = serverObject.ProcurarArtigo(ler.umaString());
                     size = serverObject.getVendas(1).size();
@@ -96,12 +96,12 @@ public class VendedorClient {
                     }
                     break;
 
-                case 3:
+                case 3:   //Número de acessos
                     System.out.println("Número de acessos");
                     System.out.println(serverObject.getCount());
                     break;
 
-                case 4:
+                case 4:   //Procurar por nome
                     System.out.println("Insira o nome do artigo a procurar");
                     search = serverObject.ProcurarArtigo(ler.umaString());
                     if(search.equals(new Artigos()))
@@ -110,18 +110,14 @@ public class VendedorClient {
                         System.out.println("Artigo encontrado");
                     break;
 
-                case 5:
+                case 5:   //Listar Vendas
                     System.out.println("Vendas:");
                     System.out.println("1- Por Nome\n2- Por Data\n3- Por Quantidade\n");
                     option2 = ler.umInt();
                     System.out.println(serverObject.getVendas(option2));
                     break;
 
-                case 6:
-                    System.out.println("Send message: ");
-                    server.reciveMessage(ler.umaString());
                 case 0:
-                    serverObject.escreverArtigos();
                     break;
             }
         }
