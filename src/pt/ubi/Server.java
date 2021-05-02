@@ -48,7 +48,7 @@ public class Server extends UnicastRemoteObject implements pt.ubi.ServerInterfac
     public static void main(String args[]) throws RemoteException {
 
         System.setSecurityManager(new SecurityManager());
-        java.rmi.registry.LocateRegistry.createRegistry(1111);
+        java.rmi.registry.LocateRegistry.createRegistry(1099);
         System.out.println("RMI registry ready.");
 
         try {
