@@ -79,10 +79,14 @@ public class VendedorClient {
                             server.reciveMessage(search.getNome());
                             break;
                         }else{
+
                             if(serverObject.addVenda(search,quantidade) == size){
                                 System.out.println("Venda não adicionada");
                             }else{
                                 System.out.println("Venda realizada");
+                                if(quantidade == search.getStock()){
+                                    server.reciveMessage(search.getNome());
+                                }
                             }
                             serverObject.escreverArtigos();
                             serverObject.escreverVendas();
